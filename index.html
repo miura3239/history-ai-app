@@ -2,10 +2,31 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>history-ai-app</title>
+  <title>AIテスト</title>
 </head>
 <body>
-  <h1>🎉 表示できました！</h1>
-  <p>ここがトップページです</p>
+
+  <h1>🤖 AIテスト</h1>
+
+  <input id="msg" type="text" placeholder="文字を入れてね">
+  <button onclick="send()">送信</button>
+
+  <p id="result"></p>
+
+  <script>
+    async function send() {
+      const text = document.getElementById("msg").value;
+
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: text })
+      });
+
+      const data = await res.json();
+      document.getElementById("result").textContent = data.reply;
+    }
+  </script>
+
 </body>
 </html>
