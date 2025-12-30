@@ -1,6 +1,7 @@
 export default function handler(req, res) {
+  const message = req.body.message;
+
   res.status(200).json({
-    reply: "テスト成功です！APIは動いています！"
+    reply: "あなたは「" + message + "」と送りました"
   });
 }
-
